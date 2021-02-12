@@ -1,4 +1,4 @@
-package com.sassacakes.sales.product;
+package com.sassacakes.sales.product.converter;
 
 import org.springframework.stereotype.Component;
 

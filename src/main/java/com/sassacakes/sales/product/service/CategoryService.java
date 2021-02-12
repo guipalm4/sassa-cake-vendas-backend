@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.sassacakes.sales.product.model.Category;
 import com.sassacakes.sales.product.repository.CategoryRepository;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class CategoryService {
 
     @Autowired
@@ -29,6 +32,7 @@ public class CategoryService {
     }
 
     public Category save(Category category) {
+        log.info("Salvando categoria. Categoria: [{}]", category.getName());
         return categoryRepository.save(category);
     }
 
