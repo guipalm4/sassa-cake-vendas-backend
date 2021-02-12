@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.sassa-cake'
+group = 'com.sassa-cakes'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -22,8 +22,16 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Apache
+	implementation group: 'org.apache.commons', name: 'commons-lang3'
+
+	implementation('io.springfox:springfox-swagger2:3.0.0')
+	implementation('io.springfox:springfox-boot-starter:3.0.0')
+	implementation('io.springfox:springfox-swagger-ui:3.0.0')
+
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
+
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
