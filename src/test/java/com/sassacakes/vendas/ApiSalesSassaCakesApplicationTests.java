@@ -1,10 +1,10 @@
-package com.sassacake.vendas;
+package com.sassacakes.vendas;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiVendasSassaCakesApplicationTests {
+class ApiSalesSassaCakesApplicationTests {
 
 	@Test
 	void contextLoads() {
