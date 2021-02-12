@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Service;
 
+import com.sassacakes.sales.core.error.SassaCakesError;
 import com.sassacakes.sales.product.converter.ProductConverter;
 import com.sassacakes.sales.product.dto.CreateProductRequest;
 import com.sassacakes.sales.product.model.Category;
 import com.sassacakes.sales.product.model.Product;
 import com.sassacakes.sales.product.repository.ProductRepository;
-import com.sassacakes.sales.core.exception.SassaCakesError;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -31,6 +31,10 @@ public class ProductService {
     }
     public Product save(Product product) {
         return productRepository.save(product);
+    }
+
+    public Iterable<Product> getAll() {
+        return productRepository.findAll();
     }
 
     public Product createProduct(CreateProductRequest request) {

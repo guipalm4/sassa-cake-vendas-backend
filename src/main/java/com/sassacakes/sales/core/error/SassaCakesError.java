@@ -1,9 +1,13 @@
-package com.sassacakes.sales.core.exception;
+package com.sassacakes.sales.core.error;
 
 import java.util.function.BiFunction;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.context.support.MessageSourceAccessor;
+
+import com.sassacakes.sales.core.exception.ExceptionCode;
+import com.sassacakes.sales.core.exception.NotFoundException;
+import com.sassacakes.sales.core.exception.SassaCakesException;
 
 public enum SassaCakesError implements ExceptionCode {
 

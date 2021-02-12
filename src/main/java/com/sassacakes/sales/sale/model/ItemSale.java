@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemSale implements AbstractEntity {
+public class ItemSale implements Serializable {
 
     @JsonIgnore
     @EmbeddedId

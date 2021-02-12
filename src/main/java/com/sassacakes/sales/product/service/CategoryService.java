@@ -1,6 +1,6 @@
 package com.sassacakes.sales.product.service;
 
-import static com.sassacakes.sales.core.exception.SassaCakesError.CATEGORY_NOT_FOUND;
+import static com.sassacakes.sales.core.error.SassaCakesError.CATEGORY_NOT_FOUND;
 
 import java.util.Optional;
 
