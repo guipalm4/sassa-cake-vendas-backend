@@ -1,6 +1,5 @@
 package com.sassacakes.sales.product.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
