@@ -9,7 +9,7 @@ import com.sassacakes.sales.product.dto.CreateProductRequest;
 import com.sassacakes.sales.product.model.Category;
 import com.sassacakes.sales.product.model.Product;
 import com.sassacakes.sales.product.repository.ProductRepository;
-import com.sassacakes.sales.error.exception.SassaCakesError;
+import com.sassacakes.sales.core.exception.SassaCakesError;
 import lombok.extern.slf4j.Slf4j;
 
 @Service

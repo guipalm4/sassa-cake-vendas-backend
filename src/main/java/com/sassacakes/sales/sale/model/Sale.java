@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sassacakes.sales.core.model.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +17,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Sale implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Sale implements AbstractEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

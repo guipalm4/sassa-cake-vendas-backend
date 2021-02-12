@@ -1,4 +1,4 @@
-package com.sassacakes.sales.config;
+package com.sassacakes.sales.core.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

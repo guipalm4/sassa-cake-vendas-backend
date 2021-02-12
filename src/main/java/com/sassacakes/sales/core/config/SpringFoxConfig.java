@@ -1,4 +1,4 @@
-package com.sassacakes.sales.config;
+package com.sassacakes.sales.core.config;
 
 import java.security.Principal;
 

@@ -1,6 +1,6 @@
 package com.sassacakes.sales.product.service;
 
-import static com.sassacakes.sales.error.exception.SassaCakesError.CATEGORY_NOT_FOUND;
+import static com.sassacakes.sales.core.exception.SassaCakesError.CATEGORY_NOT_FOUND;
 
 import java.util.Optional;
 
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.sassacakes.sales.product.model.Category;
 import com.sassacakes.sales.product.repository.CategoryRepository;
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 
 @Service

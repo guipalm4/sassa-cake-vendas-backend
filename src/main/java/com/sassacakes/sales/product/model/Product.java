@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
+import com.sassacakes.sales.core.model.AbstractEntity;
 import com.sassacakes.sales.sale.model.ItemSale;
 import lombok.*;
 
@@ -19,8 +20,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Product implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Product implements AbstractEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -41,6 +41,7 @@ public class Product implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy="id.product")
+    @Builder.Default
     private Set<ItemSale> itens = new HashSet<>();
 
 }
