@@ -9,14 +9,13 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sassacakes.sales.core.model.AbstractEntity;
 import com.sassacakes.sales.customer.model.Customer;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@Entity
+@Getter
+@Setter
+@EqualsAndHashCode
 @NoArgsConstructor
-@AllArgsConstructor
+@Entity
 public class Sale implements AbstractEntity {
 
     @Id

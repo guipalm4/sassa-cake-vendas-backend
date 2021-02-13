@@ -10,8 +10,9 @@ import com.sassacakes.sales.product.model.Product;
 public class ProductConverter {
 
     public Product convert(CreateProductRequest request, Category category) {
-        return Product.builder()
+        return Product.Builder.aProduct()
                 .description(request.getDescription())
+                .category(category)
                 .price(request.getPrice())
                 .cost(request.getCost()).build();
     }

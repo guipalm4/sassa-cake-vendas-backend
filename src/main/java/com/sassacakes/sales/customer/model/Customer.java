@@ -10,13 +10,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 import com.sassacakes.sales.core.model.AbstractEntity;
 import com.sassacakes.sales.sale.model.Sale;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
 @NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 @Entity
 public class Customer implements AbstractEntity {
 

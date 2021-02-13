@@ -40,11 +40,9 @@ public class ProductService {
     public Product createProduct(CreateProductRequest request) {
         log.info("Verificando categoria. Categoria: [{}]", request.getDescription());
         Category category = categoryService.findByName(request.getDescription())
-                .orElse(categoryService.save(new Category(request.getDescription())));
-
+                .orElse(categoryService.save(new Category(request.getCategory())));
         Product product = productConverter.convert(request, category);
         return this.save(product);
     }
-
 
 }

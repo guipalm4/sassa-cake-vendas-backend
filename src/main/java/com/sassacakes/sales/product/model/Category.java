@@ -6,14 +6,13 @@ import javax.persistence.*;
 
 import com.google.common.collect.Lists;
 import com.sassacakes.sales.core.model.AbstractEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Category implements AbstractEntity {
 
     @Id
@@ -21,10 +20,15 @@ public class Category implements AbstractEntity {
     private Integer id;
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
+    @OneToMany(mappedBy="category")
     private List<Product> products = Lists.newArrayList();
 
     public Category(String name) {
+        this.name = name;
+    }
+
+    public Category(Integer id, String name) {
+        this.id = id;
         this.name = name;
     }
 }
