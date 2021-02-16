@@ -1,15 +1,17 @@
 package com.sassacakes.sales.sale.model;
 
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sassacakes.sales.core.model.AbstractEntity;
 import com.sassacakes.sales.customer.model.Customer;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,7 +25,7 @@ public class Sale implements AbstractEntity {
     private Integer id;
 
     @JsonFormat(pattern="dd/MM/yyyy hh:mm")
-    private LocalDate instant;
+    private LocalDateTime instant;
 
     @OneToOne(cascade=CascadeType.ALL, mappedBy="sale")
     private Payment payment;

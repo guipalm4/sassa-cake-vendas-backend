@@ -12,7 +12,9 @@ import com.sassacakes.sales.core.exception.SassaCakesException;
 public enum SassaCakesError implements ExceptionCode {
 
     PRODUCT_NOT_FOUND("SALES-0001", "product.not.found"),
-    CATEGORY_NOT_FOUND("SALES-0002", "category.not.found");
+    CATEGORY_NOT_FOUND("SALES-0002", "category.not.found"),
+    CUSTOMER_NOT_FOUND("SALES-0003", "customer.not.found"),
+    CUSTOMER_LIMIT_EXCEEDED("SALES-0004", "customer.limit.exceeded");
 
     private final String code;
     private final String message;
