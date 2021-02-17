@@ -1,21 +1,22 @@
 package com.sassacakes.sales.product.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import com.sassacakes.sales.product.dto.CreateProductRequest;
 import com.sassacakes.sales.product.model.Product;
 import com.sassacakes.sales.product.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Slf4j
 @RestController
 @RequestMapping(value = "product", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ProductController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
     private ProductService productService;
@@ -29,7 +30,7 @@ public class ProductController {
     public ResponseEntity<Product> save(@ApiParam(value = "Instância do Produto", required = true)
                                         @RequestBody CreateProductRequest request) {
 
-        log.info("Salvando produto. Requisicão : [{}]", request);
+        LOGGER.info("Salvando produto. Requisicão : [{}]", request);
 
         return ResponseEntity.ok(productService.createProduct(request));
 
@@ -43,7 +44,7 @@ public class ProductController {
     @GetMapping(value = "/")
     public ResponseEntity<Iterable<Product>> list() {
 
-        log.info("Listando os produtos...");
+        LOGGER.info("Listando os produtos...");
 
         return ResponseEntity.ok(productService.getAll());
 
@@ -58,7 +59,7 @@ public class ProductController {
     public ResponseEntity<Product> findById(@ApiParam(value = "Id do Produto", required = true)
                                              @PathVariable Integer id) {
 
-        log.info("Pesquisando produto por id [{}]", id);
+        LOGGER.info("Pesquisando produto por id [{}]", id);
         return ResponseEntity.ok(productService.findById(id));
     }
 }

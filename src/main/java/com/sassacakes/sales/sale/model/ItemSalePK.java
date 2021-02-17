@@ -1,20 +1,14 @@
 package com.sassacakes.sales.sale.model;
 
-import java.io.Serializable;
+import com.google.common.base.Objects;
+import com.sassacakes.sales.product.model.Product;
 
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import com.sassacakes.sales.product.model.Product;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.io.Serializable;
 
 @Embeddable
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ItemSalePK implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -25,4 +19,41 @@ public class ItemSalePK implements Serializable {
     @ManyToOne
     @JoinColumn(name="product_id")
     private Product product;
+
+    public Sale getSale() {
+        return sale;
+    }
+
+    public void setSale(Sale sale) {
+        this.sale = sale;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ItemSalePK)) return false;
+        ItemSalePK that = (ItemSalePK) o;
+        return Objects.equal(getSale(), that.getSale()) && Objects.equal(getProduct(), that.getProduct());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getSale(), getProduct());
+    }
+
+    @Override
+    public String toString() {
+        return "ItemSalePK{" +
+                "sale=" + sale +
+                ", product=" + product +
+                '}';
+    }
 }

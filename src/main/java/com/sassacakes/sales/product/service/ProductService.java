@@ -1,20 +1,22 @@
 package com.sassacakes.sales.product.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.MessageSourceAccessor;
-import org.springframework.stereotype.Service;
-
 import com.sassacakes.sales.core.error.SassaCakesError;
 import com.sassacakes.sales.product.converter.ProductConverter;
 import com.sassacakes.sales.product.dto.CreateProductRequest;
 import com.sassacakes.sales.product.model.Category;
 import com.sassacakes.sales.product.model.Product;
 import com.sassacakes.sales.product.repository.ProductRepository;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.stereotype.Service;
+
 
 @Service
-@Slf4j
 public class ProductService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
 
     @Autowired
     private MessageSourceAccessor message;
@@ -38,10 +40,16 @@ public class ProductService {
     }
 
     public Product createProduct(CreateProductRequest request) {
-        log.info("Verificando categoria. Categoria: [{}]", request.getDescription());
-        Category category = categoryService.findByName(request.getDescription())
-                .orElse(categoryService.save(new Category(request.getCategory())));
+        LOGGER.info("Verificando categoria. Categoria: [{}]", request.getDescription());
+
+
+        Category category = categoryService.findByName(request.getCategory())
+                .orElse(new Category(request.getCategory()));
+
         Product product = productConverter.convert(request, category);
+        category.getProducts().add(product);
+
+        categoryService.save(category);
         return this.save(product);
     }
 

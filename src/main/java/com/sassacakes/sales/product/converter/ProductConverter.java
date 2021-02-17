@@ -1,10 +1,9 @@
 package com.sassacakes.sales.product.converter;
 
-import org.springframework.stereotype.Component;
-
-import com.sassacakes.sales.product.model.Category;
 import com.sassacakes.sales.product.dto.CreateProductRequest;
+import com.sassacakes.sales.product.model.Category;
 import com.sassacakes.sales.product.model.Product;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ProductConverter {

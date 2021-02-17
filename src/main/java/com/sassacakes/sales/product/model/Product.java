@@ -1,28 +1,18 @@
 package com.sassacakes.sales.product.model;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.Lists;
+import com.google.common.base.Objects;
 import com.sassacakes.sales.core.model.AbstractEntity;
 import com.sassacakes.sales.sale.model.ItemSale;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
 public class Product implements AbstractEntity {
 
     @Id
@@ -47,6 +37,82 @@ public class Product implements AbstractEntity {
         this.price = price;
     }
 
+    public Product() {
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getCost() {
+        return cost;
+    }
+
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<ItemSale> getItens() {
+        return itens;
+    }
+
+    public void setItens(Set<ItemSale> itens) {
+        this.itens = itens;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return Objects.equal(getId(), product.getId()) && Objects.equal(getDescription(), product.getDescription()) && Objects.equal(getCost(), product.getCost()) && Objects.equal(getPrice(), product.getPrice()) && Objects.equal(getCategory(), product.getCategory()) && Objects.equal(getItens(), product.getItens());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId(), getDescription(), getCost(), getPrice(), getCategory());
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", cost=" + cost +
+                ", price=" + price +
+                ", category=" + category +
+                ", itens=" + itens +
+                '}';
+    }
 
     public static final class Builder {
         private Integer id;

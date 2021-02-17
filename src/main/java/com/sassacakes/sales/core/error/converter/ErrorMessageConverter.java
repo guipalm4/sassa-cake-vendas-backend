@@ -1,11 +1,11 @@
 package com.sassacakes.sales.core.error.converter;
 
+import com.sassacakes.sales.core.error.ErrorMessage;
+import com.sassacakes.sales.core.exception.SassaCakesException;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import com.sassacakes.sales.core.error.ErrorMessage;
-import com.sassacakes.sales.core.exception.SassaCakesException;
 
 public class ErrorMessageConverter {
 
@@ -27,9 +27,7 @@ public class ErrorMessageConverter {
     private <T extends Throwable> T getRootCause(final T throwable) {
         T cause = throwable;
 
-        while(cause.getCause() != null) {
-            cause = (T) cause.getCause();
-        }
+        while(cause.getCause() != null) cause = (T) cause.getCause();
 
         return cause;
     }
