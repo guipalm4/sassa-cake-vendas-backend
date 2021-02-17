@@ -1,14 +1,20 @@
-package com.sassacakes.sales.error.exception;
+package com.sassacakes.sales.core.error;
 
-import java.util.function.BiFunction;
-
+import com.sassacakes.sales.core.exception.BusinessException;
+import com.sassacakes.sales.core.exception.ExceptionCode;
+import com.sassacakes.sales.core.exception.NotFoundException;
+import com.sassacakes.sales.core.exception.SassaCakesException;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.context.support.MessageSourceAccessor;
+
+import java.util.function.BiFunction;
 
 public enum SassaCakesError implements ExceptionCode {
 
     PRODUCT_NOT_FOUND("SALES-0001", "product.not.found"),
-    CATEGORY_NOT_FOUND("SALES-0002", "category.not.found");
+    CATEGORY_NOT_FOUND("SALES-0002", "category.not.found"),
+    CUSTOMER_NOT_FOUND("SALES-0003", "customer.not.found"),
+    CUSTOMER_LIMIT_EXCEEDED("SALES-0004", "customer.limit.exceeded");
 
     private final String code;
     private final String message;
@@ -25,6 +31,10 @@ public enum SassaCakesError implements ExceptionCode {
 
     public NotFoundException asNotFoundException(MessageSourceAccessor message, Object... args) {
         return exception(NotFoundException::new, message, args);
+    }
+
+    public BusinessException asBusinessException(MessageSourceAccessor message, Object... args) {
+        return exception(BusinessException::new, message, args);
     }
 
     private <T extends SassaCakesException> T exception(BiFunction<String, String, T> error,

@@ -1,11 +1,10 @@
 package com.sassacakes.sales.product.repository;
 
-import java.util.Optional;
-
+import com.sassacakes.sales.product.model.Product;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.sassacakes.sales.product.model.Product;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Integer> {

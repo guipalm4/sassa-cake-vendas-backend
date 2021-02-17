@@ -1,15 +1,13 @@
-package com.sassacakes.sales.config;
+package com.sassacakes.sales.core.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @Configuration
-public class LocaleResolver {
+public class MessageSourceAccessorConfig {
 
     public static final String BASENAME = "classpath:messages";
 

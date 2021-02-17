@@ -1,4 +1,4 @@
-package com.sassacakes.sales.error.exception;
+package com.sassacakes.sales.core.exception;
 @FunctionalInterface
 public interface ExceptionCode {
 
