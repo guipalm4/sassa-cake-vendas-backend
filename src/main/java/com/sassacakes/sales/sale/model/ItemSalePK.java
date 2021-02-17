@@ -48,12 +48,4 @@ public class ItemSalePK implements Serializable {
     public int hashCode() {
         return Objects.hashCode(getSale(), getProduct());
     }
-
-    @Override
-    public String toString() {
-        return "ItemSalePK{" +
-                "sale=" + sale +
-                ", product=" + product +
-                '}';
-    }
 }

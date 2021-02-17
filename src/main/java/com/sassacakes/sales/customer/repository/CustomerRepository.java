@@ -9,6 +9,4 @@ import java.util.Optional;
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
-    @Override
-    Optional<Customer> findById(Integer integer);
 }

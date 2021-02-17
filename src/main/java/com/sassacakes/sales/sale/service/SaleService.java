@@ -9,12 +9,14 @@ import com.sassacakes.sales.sale.model.ItemSale;
 import com.sassacakes.sales.sale.model.Payment;
 import com.sassacakes.sales.sale.model.Sale;
 import com.sassacakes.sales.sale.repository.ItemSaleRepository;
+import com.sassacakes.sales.sale.repository.PaymentRepository;
 import com.sassacakes.sales.sale.repository.SaleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -28,6 +30,9 @@ public class SaleService {
     @Autowired
     private CustomerService customerService;
     @Autowired
+    private PaymentRepository paymentRepository;
+
+    @Autowired
     private SaleRepository saleRepository;
     @Autowired
     private ItemSaleRepository itemSaleRepository;
@@ -36,6 +41,7 @@ public class SaleService {
         return saleRepository.save(sale);
     }
 
+    @Transactional
     public Sale sell(Sale saleRequest) {
 
         LOGGER.info("Iniciando processo de venda...");
@@ -74,10 +80,12 @@ public class SaleService {
     private Sale generateSale(Sale sale) {
         LOGGER.info("Gerando objeto de venda...");
         sale.setId(null);
+        sale.setCustomer(customerService.find(sale.getCustomer().getId()).orElse(null));
         sale.setInstant(LocalDateTime.now());
         sale.getPayment().setEstate(StatePayment.PENDING);
         sale.getPayment().setSale(sale);
         Sale saved = this.save(sale);
+        paymentRepository.save(sale.getPayment());
         LOGGER.info("Objeto criado. Venda: [{}]", saved);
         return generateItemsSale(saved);
     }

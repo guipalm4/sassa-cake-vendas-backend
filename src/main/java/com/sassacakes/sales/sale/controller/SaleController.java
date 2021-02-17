@@ -30,7 +30,7 @@ public class SaleController {
     public ResponseEntity<Sale> sell(@ApiParam(value = "Instância da venda", required = true)
                                         @RequestBody Sale saleRequest) {
 
-        LOGGER.info("Realizando venda. Requisicão : [{}]", saleRequest);
+        LOGGER.info("Realizando venda...");
 
         return ResponseEntity.ok(saleService.sell(saleRequest));
 

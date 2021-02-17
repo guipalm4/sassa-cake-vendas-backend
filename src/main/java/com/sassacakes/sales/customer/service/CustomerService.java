@@ -9,6 +9,7 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static com.sassacakes.sales.core.error.SassaCakesError.CUSTOMER_LIMIT_EXCEEDED;
 
@@ -28,8 +29,13 @@ public class CustomerService {
     }
 
     public Customer findById(Integer id) {
-        return customerRepository.findById(id).orElseThrow(() ->
-                SassaCakesError.CUSTOMER_NOT_FOUND.asNotFoundException(message,id));
+
+        Optional<Customer> customer = customerRepository.findById(id);
+
+        if (customer.isEmpty()) {
+            throw SassaCakesError.CUSTOMER_NOT_FOUND.asNotFoundException(message,id);
+        }
+        return customer.get();
     }
 
     public Customer save(Customer customer) {
@@ -48,7 +54,7 @@ public class CustomerService {
 
     public void verifyLimit(Customer customer, BigDecimal orderValue) {
         if(limitExceeded(customer.getCredit(), orderValue)) {
-            throw CUSTOMER_LIMIT_EXCEEDED.asNotFoundException(message, customer.getCredit());
+            throw CUSTOMER_LIMIT_EXCEEDED.asBusinessException(message, customer.getCredit().toString());
         }
 
     }
@@ -75,4 +81,7 @@ public class CustomerService {
         this.save(customer);
     }
 
+    public Optional<Customer> find(Integer id) {
+        return customerRepository.findById(id);
+    }
 }

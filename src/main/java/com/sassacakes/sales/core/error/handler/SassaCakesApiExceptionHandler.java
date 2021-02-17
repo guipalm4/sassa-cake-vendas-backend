@@ -2,6 +2,7 @@ package com.sassacakes.sales.core.error.handler;
 
 import com.sassacakes.sales.core.error.ErrorMessage;
 import com.sassacakes.sales.core.error.converter.ErrorMessageConverter;
+import com.sassacakes.sales.core.exception.BusinessException;
 import com.sassacakes.sales.core.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,11 @@ public class SassaCakesApiExceptionHandler extends ResponseEntityExceptionHandle
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorMessage> notFoundException(final NotFoundException e) {
         return error(e, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<ErrorMessage> notFoundException(final BusinessException e) {
+        return error(e, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)

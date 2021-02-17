@@ -20,6 +20,17 @@ public class ItemSale implements Serializable {
     private Integer quantity;
     private BigDecimal price;
 
+    public ItemSale(Sale sale, Product product, BigDecimal discount, Integer quantity, BigDecimal price) {
+        id.setSale(sale);
+        id.setProduct(product);
+        this.discount = discount;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public ItemSale() {
+    }
+
     @JsonIgnore
     public Sale getSale() {
         return id.getSale();
@@ -77,21 +88,25 @@ public class ItemSale implements Serializable {
         if (this == o) return true;
         if (!(o instanceof ItemSale)) return false;
         ItemSale itemSale = (ItemSale) o;
-        return Objects.equal(getId(), itemSale.getId()) && Objects.equal(getDiscount(), itemSale.getDiscount()) && Objects.equal(getQuantity(), itemSale.getQuantity()) && Objects.equal(getPrice(), itemSale.getPrice());
+        return Objects.equal(getId(), itemSale.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId(), getDiscount(), getQuantity(), getPrice());
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
-        return "ItemSale{" +
-                "id=" + id +
-                ", discount=" + discount +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(getProduct().getDescription());
+        builder.append(", Qte: ");
+        builder.append(getQuantity());
+        builder.append(", Preço unitário: ");
+        builder.append(getPrice());
+        builder.append(", Subtotal: ");
+        builder.append(getSubTotal());
+        builder.append("\n");
+        return builder.toString();
     }
 }

@@ -4,11 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Objects;
 import com.sassacakes.sales.core.model.AbstractEntity;
 import com.sassacakes.sales.sale.model.ItemSale;
+import com.sassacakes.sales.sale.model.Sale;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -38,6 +41,11 @@ public class Product implements AbstractEntity {
     }
 
     public Product() {
+    }
+
+    @JsonIgnore
+    public List<Sale> getSales() {
+        return itens.stream().map(ItemSale::getSale).collect(Collectors.toList());
     }
 
     @Override

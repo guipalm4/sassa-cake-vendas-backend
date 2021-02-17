@@ -24,9 +24,7 @@ public class Category implements AbstractEntity {
         this.name = name;
     }
 
-    public Category(Integer id, String name) {
-        this.id = id;
-        this.name = name;
+    public Category() {
     }
 
     @Override

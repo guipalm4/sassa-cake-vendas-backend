@@ -1,5 +1,6 @@
 package com.sassacakes.sales.sale.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Objects;
 import com.sassacakes.sales.core.model.AbstractEntity;
@@ -64,19 +65,18 @@ public class Payment implements AbstractEntity {
         if (this == o) return true;
         if (!(o instanceof Payment)) return false;
         Payment payment = (Payment) o;
-        return Objects.equal(getId(), payment.getId()) && Objects.equal(getSale(), payment.getSale()) && getEstate() == payment.getEstate() && getMethod() == payment.getMethod();
+        return Objects.equal(getId(), payment.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId(), getSale(), getEstate(), getMethod());
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Payment{" +
                 "id=" + id +
-                ", sale=" + sale +
                 ", estate=" + estate +
                 ", method=" + method +
                 '}';

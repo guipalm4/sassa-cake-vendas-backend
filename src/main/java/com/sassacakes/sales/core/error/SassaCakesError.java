@@ -1,5 +1,6 @@
 package com.sassacakes.sales.core.error;
 
+import com.sassacakes.sales.core.exception.BusinessException;
 import com.sassacakes.sales.core.exception.ExceptionCode;
 import com.sassacakes.sales.core.exception.NotFoundException;
 import com.sassacakes.sales.core.exception.SassaCakesException;
@@ -30,6 +31,10 @@ public enum SassaCakesError implements ExceptionCode {
 
     public NotFoundException asNotFoundException(MessageSourceAccessor message, Object... args) {
         return exception(NotFoundException::new, message, args);
+    }
+
+    public BusinessException asBusinessException(MessageSourceAccessor message, Object... args) {
+        return exception(BusinessException::new, message, args);
     }
 
     private <T extends SassaCakesException> T exception(BiFunction<String, String, T> error,
