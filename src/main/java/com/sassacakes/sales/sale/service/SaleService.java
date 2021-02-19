@@ -63,6 +63,7 @@ public class SaleService {
         LOGGER.info("Verificando limite disponivel. Cliente: [{}]", customer.getNome());
         customerService.verifyLimit(customer, total);
         LOGGER.info("Atualizando limite disponivel. Cliente: [{}]", customer.getNome());
+        sale.getPayment().setEstate(StatePayment.PENDING);
         customerService.removeLimit(customer, total);
         customerService.save(customer);
     }
@@ -82,7 +83,7 @@ public class SaleService {
         sale.setId(null);
         sale.setCustomer(customerService.find(sale.getCustomer().getId()).orElse(null));
         sale.setInstant(LocalDateTime.now());
-        sale.getPayment().setEstate(StatePayment.PENDING);
+        sale.getPayment().setEstate(StatePayment.PAID);
         sale.getPayment().setSale(sale);
         Sale saved = this.save(sale);
         paymentRepository.save(sale.getPayment());
