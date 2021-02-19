@@ -1,18 +1,14 @@
 package com.sassacakes.sales.sale.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.common.base.Objects;
 import com.sassacakes.sales.core.model.AbstractEntity;
 import com.sassacakes.sales.customer.model.Customer;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 @Entity

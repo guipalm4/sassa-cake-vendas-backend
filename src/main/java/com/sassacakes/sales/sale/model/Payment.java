@@ -1,6 +1,5 @@
 package com.sassacakes.sales.sale.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Objects;
 import com.sassacakes.sales.core.model.AbstractEntity;

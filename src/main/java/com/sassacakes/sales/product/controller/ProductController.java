@@ -1,5 +1,8 @@
 package com.sassacakes.sales.product.controller;
 
+import com.sassacakes.sales.core.dto.BasicResponse;
+import com.sassacakes.sales.core.dto.InfoMessage;
+import com.sassacakes.sales.core.dto.MessageType;
 import com.sassacakes.sales.product.dto.CreateProductRequest;
 import com.sassacakes.sales.product.model.Product;
 import com.sassacakes.sales.product.service.ProductService;
@@ -27,12 +30,19 @@ public class ProductController {
             responseContainer = "CompletableFuture",
             nickname = "cria-ou-altera-produto")
     @PutMapping(value = "/")
-    public ResponseEntity<Product> save(@ApiParam(value = "Instância do Produto", required = true)
+    public ResponseEntity<BasicResponse> save(@ApiParam(value = "Instância do Produto", required = true)
                                         @RequestBody CreateProductRequest request) {
 
         LOGGER.info("Salvando produto. Requisicão : [{}]", request);
 
-        return ResponseEntity.ok(productService.createProduct(request));
+        Product response = productService.createProduct(request);
+
+        return ResponseEntity
+                .ok(BasicResponse.Builder.aBasicResponse().data(response)
+                        .message(InfoMessage.Builder.anInfoMessage()
+                                .text("Produto cadastrado com sucesso.")
+                                .type(MessageType.SUCCESS).build())
+                        .build());
 
     }
 

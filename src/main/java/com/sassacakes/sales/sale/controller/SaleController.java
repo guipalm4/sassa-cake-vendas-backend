@@ -1,5 +1,8 @@
 package com.sassacakes.sales.sale.controller;
 
+import com.sassacakes.sales.core.dto.BasicResponse;
+import com.sassacakes.sales.core.dto.InfoMessage;
+import com.sassacakes.sales.core.dto.MessageType;
 import com.sassacakes.sales.sale.dto.MethodPayment;
 import com.sassacakes.sales.sale.model.Sale;
 import com.sassacakes.sales.sale.service.SaleService;
@@ -27,12 +30,19 @@ public class SaleController {
             responseContainer = "CompletableFuture",
             nickname = "sell")
     @PostMapping(value = "/")
-    public ResponseEntity<Sale> sell(@ApiParam(value = "Instância da venda", required = true)
-                                        @RequestBody Sale saleRequest) {
+    public ResponseEntity<BasicResponse> sell(@ApiParam(value = "Instância da venda", required = true)
+                                              @RequestBody Sale saleRequest) {
 
         LOGGER.info("Realizando venda...");
 
-        return ResponseEntity.ok(saleService.sell(saleRequest));
+        Sale response = saleService.sell(saleRequest);
+
+        return ResponseEntity
+                .ok(BasicResponse.Builder.aBasicResponse().data(response)
+                        .message(InfoMessage.Builder.anInfoMessage()
+                                .text("Venda efetivada com sucesso.")
+                                .type(MessageType.SUCCESS).build())
+                        .build());
 
     }
 
