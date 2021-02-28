@@ -19,22 +19,25 @@ import java.util.stream.Collectors;
 public class Product implements AbstractEntity {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String name;
     private String description;
     private BigDecimal cost;
     private BigDecimal price;
+    private String imageUrl;
 
     @ManyToOne
-    @JoinColumn(name="category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @JsonIgnore
-    @OneToMany(mappedBy="id.product")
+    @OneToMany(mappedBy = "id.product")
     private Set<ItemSale> itens = new HashSet<>();
 
-    public Product(Integer id, String description, BigDecimal cost, BigDecimal price) {
+    public Product(Integer id, String name, String description, BigDecimal cost, BigDecimal price) {
         this.id = id;
+        this.name = name;
         this.description = description;
         this.cost = cost;
         this.price = price;
@@ -55,6 +58,14 @@ public class Product implements AbstractEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -97,23 +108,32 @@ public class Product implements AbstractEntity {
         this.itens = itens;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         Product product = (Product) o;
-        return Objects.equal(getId(), product.getId()) && Objects.equal(getDescription(), product.getDescription()) && Objects.equal(getCost(), product.getCost()) && Objects.equal(getPrice(), product.getPrice()) && Objects.equal(getCategory(), product.getCategory()) && Objects.equal(getItens(), product.getItens());
+        return Objects.equal(getId(), product.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId(), getDescription(), getCost(), getPrice(), getCategory());
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", cost=" + cost +
                 ", price=" + price +
@@ -122,12 +142,15 @@ public class Product implements AbstractEntity {
                 '}';
     }
 
+
     public static final class Builder {
         private Integer id;
+        private String name;
         private String description;
         private BigDecimal cost;
         private BigDecimal price;
         private Category category;
+        private Set<ItemSale> itens = new HashSet<>();
 
         private Builder() {
         }
@@ -138,6 +161,11 @@ public class Product implements AbstractEntity {
 
         public Builder id(Integer id) {
             this.id = id;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
             return this;
         }
 
@@ -161,13 +189,20 @@ public class Product implements AbstractEntity {
             return this;
         }
 
+        public Builder itens(Set<ItemSale> itens) {
+            this.itens = itens;
+            return this;
+        }
+
         public Product build() {
             Product product = new Product();
             product.setId(id);
+            product.setName(name);
             product.setDescription(description);
             product.setCost(cost);
             product.setPrice(price);
             product.setCategory(category);
+            product.setItens(itens);
             return product;
         }
     }

@@ -6,10 +6,19 @@ import java.math.BigDecimal;
 
 public class CreateProductRequest {
 
+    private String name;
     private String description;
     private BigDecimal cost;
     private BigDecimal price;
     private String category;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getDescription() {
         return description;
