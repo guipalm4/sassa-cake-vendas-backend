@@ -57,7 +57,7 @@ public class S3Service {
 
 
     private String generateFileName(UploadFileRequest uploadFileRequest) {
-        StringBuilder fileName = new StringBuilder("");
+        StringBuilder fileName = new StringBuilder();
 
         if (Objects.nonNull(uploadFileRequest.getFolder())) {
             fileName.append(uploadFileRequest.getFolder()).append("/");

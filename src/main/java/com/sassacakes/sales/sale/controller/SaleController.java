@@ -1,5 +1,11 @@
 package com.sassacakes.sales.sale.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import com.sassacakes.sales.core.dto.BasicResponse;
 import com.sassacakes.sales.core.dto.InfoMessage;
 import com.sassacakes.sales.core.dto.MessageType;
@@ -51,9 +57,15 @@ public class SaleController {
             responseContainer = "CompletableFuture",
             nickname = "list-payment-methods")
     @GetMapping(value = "/payment/methods")
-    public ResponseEntity<MethodPayment[]> getMethodsPayment() {
+    public ResponseEntity<List<MethodPayment>> getMethodsPayment() {
 
         LOGGER.info("Listando meios de pagamentos...");
-        return ResponseEntity.ok(MethodPayment.values());
+
+        List<MethodPayment> paymentMethods = new ArrayList<>();
+        for (MethodPayment method : MethodPayment.values()) {
+            MethodPayment methodPayment = MethodPayment.valueOf(method.name());
+            paymentMethods.add(methodPayment);
+        }
+        return ResponseEntity.ok(paymentMethods);
     }
 }

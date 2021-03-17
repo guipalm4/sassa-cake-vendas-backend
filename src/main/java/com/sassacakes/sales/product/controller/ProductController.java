@@ -1,5 +1,16 @@
 package com.sassacakes.sales.product.controller;
 
+import java.io.IOException;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.sassacakes.sales.core.dto.BasicResponse;
 import com.sassacakes.sales.core.dto.InfoMessage;
 import com.sassacakes.sales.core.dto.MessageType;
@@ -9,17 +20,6 @@ import com.sassacakes.sales.product.model.Product;
 import com.sassacakes.sales.product.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lombok.SneakyThrows;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -83,7 +83,7 @@ public class ProductController {
             responseContainer = "CompletableFuture",
             nickname = "lista-todos-produtos")
     @GetMapping(value = "/")
-    public ResponseEntity<List<ProductDto>> list() {
+    public ResponseEntity<List<Product>> list() {
 
         LOGGER.info("Listando os produtos...");
 

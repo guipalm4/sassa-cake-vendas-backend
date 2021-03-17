@@ -22,7 +22,6 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Service
 public class ProductService {
 
@@ -56,10 +55,8 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public List<ProductDto> getAll() {
-        return productRepository.findAll().stream()
-                .map(product -> productConverter.convert(product))
-                .collect(Collectors.toList());
+    public List<Product> getAll() {
+        return productRepository.findAll();
     }
 
     public Product createProduct(CreateProductRequest request) {

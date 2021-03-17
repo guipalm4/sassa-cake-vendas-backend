@@ -19,6 +19,7 @@ public class Customer implements AbstractEntity {
     private String nome;
     private String document;
     private String email;
+    private String phone;
     private BigDecimal credit;
     private boolean risk= Boolean.FALSE;
 
@@ -73,6 +74,14 @@ public class Customer implements AbstractEntity {
 
     public void setRisk(boolean risk) {
         this.risk = risk;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public List<Sale> getSales() {
